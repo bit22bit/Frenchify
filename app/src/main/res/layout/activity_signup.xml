@@ -18,7 +18,7 @@
         android:layout_weight="1"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:weightSum="7">
+        android:weightSum="11">
 
         <TextView
             android:id="@+id/textView"
@@ -32,6 +32,27 @@
             android:textColor="#000000"
             android:textSize="30sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/label3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="Username"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/Username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="example123"
+            android:inputType="textPersonName"
+            android:textAlignment="viewStart"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/label1"
@@ -55,7 +76,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/label2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -65,12 +85,31 @@
             android:textSize="12sp" />
 
         <EditText
-            android:id="@+id/pass"
+            android:id="@+id/pass1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="Verify Password"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/vpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Verify Password"
             android:inputType="textPassword"
             android:textSize="14sp" />
 
