@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="50dp"
-    android:paddingTop="10dp"
-    android:paddingRight="50dp"
-    android:paddingBottom="10dp"
+    android:id="@+id/rootLayout"
+
     android:weightSum="3"
     tools:context=".MainActivity">
+    <include layout="@layout/toolbar_layout"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,10 +18,14 @@
         android:layout_weight="1"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingTop="10dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
         android:weightSum="11">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/signin_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -34,17 +38,17 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/label3"
+            android:id="@+id/userName_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:text="Username"
             android:textColor="#000000"
-            android:textSize="12sp" />
+            android:textSize="17sp" />
 
         <EditText
-            android:id="@+id/Username"
+            android:id="@+id/userName_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -52,20 +56,20 @@
             android:hint="example123"
             android:inputType="textPersonName"
             android:textAlignment="viewStart"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/label1"
+            android:id="@+id/email_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:text="Email"
             android:textColor="#000000"
-            android:textSize="12sp" />
+            android:textSize="17sp" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/email_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -73,56 +77,60 @@
             android:hint="example@gmail.com"
             android:inputType="textPersonName"
             android:textAlignment="viewStart"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/pass_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:text="Password"
             android:textColor="#000000"
-            android:textSize="12sp" />
+            android:textSize="17sp" />
 
         <EditText
-            android:id="@+id/pass1"
+            android:id="@+id/pass_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/verifypass_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:text="Verify Password"
             android:textColor="#000000"
-            android:textSize="12sp" />
+            android:textSize="17sp" />
 
         <EditText
-            android:id="@+id/vpass"
+            android:id="@+id/verifypass_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="Verify Password"
             android:inputType="textPassword"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/condition_cb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="I agree to the Terms of Services and Privacy Policy"
-            android:textSize="10sp" />
+            android:textSize="12sp"
+            android:checked="false"
+            />
 
         <Button
-            android:id="@+id/signup"
+            android:id="@+id/signUp_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -132,38 +140,44 @@
             android:textColor="#000000"
             android:textColorHint="#FFFFFF"
             android:textColorLink="#FFFFFF"
-            android:textSize="14sp"
+            android:textSize="17sp"
+            android:onClick="authProcess"
             app:strokeColor="#000000"
             app:strokeWidth="2dp" />
 
     </LinearLayout>
 
     <LinearLayout
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="3">
 
         <TextView
-            android:id="@+id/account"
+            android:id="@+id/haveAnAccount_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Have an Account?"
-            android:textSize="12sp" />
+            android:layout_marginRight="20dp"
+            android:textSize="15sp"
+
+            />
 
         <Button
-            android:id="@+id/signin"
+            android:id="@+id/gotoSignIn_button"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
             android:text="Sign In"
+            android:onClick="gotoSignInPage"
             android:textColor="#000000"
-            android:textSize="12sp" />
+            android:textSize="17sp" />
     </LinearLayout>
 
 </LinearLayout>

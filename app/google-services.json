@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "279654055035",
+    "project_id": "frenchify-56824",
+    "storage_bucket": "frenchify-56824.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279654055035:android:54b232599b38804e2bf6de",
+        "android_client_info": {
+          "package_name": "com.bits.frenchify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279654055035-crmg3jiiqgp5qse662opd9pqruvh70ob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8vMtDF9helDCsbwdtVH3mNoriziLzH1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279654055035-crmg3jiiqgp5qse662opd9pqruvh70ob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
