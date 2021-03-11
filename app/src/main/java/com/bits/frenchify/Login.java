@@ -7,20 +7,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.animation.Animator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +24,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     Button signup;
 
     Toolbar toolbar;
@@ -38,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout toolbarLl;
 
 
-    ImageView imageView;
+
 
     TextView signInMainTv;
     TextView nicetomeetTv;
@@ -54,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button loginButton;
 
-    Boolean firstTime=true;
+
 
     public void gotoForgetPassPage(View view){
 
@@ -69,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
         toolbarLl=findViewById(R.id.toolbar_ll);
         toolbar.setTitle("Welcome Back!!");
         signup = findViewById(R.id.gotosignup_button);
-        imageView=findViewById(R.id.splaceScreen);
+
         root=findViewById(R.id.drawer_layout);
+        root.setBackgroundColor(ContextCompat.getColor(Login.this, R.color.white));
         signInMainTv=findViewById(R.id.signin_main_tv);
         nicetomeetTv=findViewById(R.id.nicetomeet_tv);
         emailMainTV=findViewById(R.id.email_main_tv);
@@ -88,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotoSignUpPage(View view){
-        startActivity(new Intent(MainActivity.this, Signup.class));
+        startActivity(new Intent(Login.this, Signup.class));
 
         
     }
@@ -133,13 +129,13 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
 
-                    Toast.makeText(MainActivity.this, "Loged In", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this,LearningOrAssessment.class);
+                    Toast.makeText(Login.this, "Loged In", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this,LearningOrAssessment.class);
                     startActivity(intent);
                     finish();
                 }   
                 else{
-                    Toast.makeText(MainActivity.this, "Not Logged In", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Not Logged In", Toast.LENGTH_SHORT).show();
                 }
 
                 progressDialog1.dismiss();
@@ -158,74 +154,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         initView();
-
-
-        if(firstTime){
-            time();
-            firstTime=false;
-        }
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 
     }
 
-
-
-
-
-
-    public void time(){
-        new CountDownTimer(2000, 1000) {
-            @Override
-            public void onTick(long millisUntilFnished) {
-                root.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.black));
-                startAnimation();
-            }
-            @Override
-            public void onFinish() {
-                toolbarLl.setVisibility(View.VISIBLE);
-                root.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.white));
-                mainContent.setVisibility(View.VISIBLE);
-                imageView.setVisibility(View.INVISIBLE);
-            }
-        }.start();
-    }
-
-    private void startAnimation() {
-
-
-        ViewPropertyAnimator viewPropertyAnimator = imageView.animate();
-        viewPropertyAnimator.setDuration(11000);
-
-        viewPropertyAnimator.yBy(-1000f).alpha(-5f);
-
-
-
-
-
-        viewPropertyAnimator.setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-
-
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(false);
     }
 
 

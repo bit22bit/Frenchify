@@ -28,7 +28,7 @@ public class LearningOrAssessment extends AppCompatActivity {
     public void logout(View view){
 
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(LearningOrAssessment.this,MainActivity.class);
+        Intent intent = new Intent(LearningOrAssessment.this, Login.class);
         startActivity(intent);
         finish();
 

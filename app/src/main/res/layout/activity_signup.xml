@@ -8,7 +8,7 @@
     android:id="@+id/rootLayout"
 
     android:weightSum="3"
-    tools:context=".MainActivity">
+    tools:context=".Login">
     <include layout="@layout/toolbar_layout"/>
 
 

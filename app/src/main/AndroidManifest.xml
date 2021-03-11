@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Frenchify">
-        <activity android:name=".LearningOrAssessment"></activity>
+        <activity android:name=".Login"></activity>
+        <activity android:name=".LearningOrAssessment" />
         <activity android:name=".Signup" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplaceScreen"
             android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

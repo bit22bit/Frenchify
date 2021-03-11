@@ -7,18 +7,18 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity"
+    tools:context=".Login"
     android:id="@+id/drawer_layout"
     >
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/blacklogosqaure"
-        android:id="@+id/splaceScreen"
-        android:visibility="visible"
-        />
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:src="@drawable/blacklogosqaure"-->
+<!--        android:id="@+id/splaceScreen"-->
+<!--        android:visibility="visible"-->
+<!--        />-->
 
 
 
@@ -28,7 +28,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/toolbar_ll"
-        android:visibility="invisible"
+        android:visibility="visible"
 
         ><include layout="@layout/toolbar_layout"/></LinearLayout>
 
@@ -45,7 +45,7 @@
         android:paddingRight="50dp"
         android:paddingBottom="10dp"
         android:gravity="center_horizontal|center_vertical"
-        android:visibility="invisible"
+        android:visibility="visible"
         >
 
 
