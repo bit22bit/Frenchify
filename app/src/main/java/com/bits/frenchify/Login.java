@@ -83,11 +83,7 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void gotoSignUpPage(View view){
-        startActivity(new Intent(Login.this, Signup.class));
 
-
-    }
 
     public void login(View view){
 
@@ -185,6 +181,11 @@ public class Login extends AppCompatActivity {
     private boolean isValidEmail(CharSequence target) {
 
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+    public void gotoSignUpPage(View view){
+        startActivity(new Intent(Login.this, Signup.class));
+
+
     }
 
 

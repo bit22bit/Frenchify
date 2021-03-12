@@ -174,9 +174,10 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
-            android:text="Sign In"
+            android:text="Sign in"
             android:onClick="gotoSignInPage"
             android:textColor="#000000"
+            android:textAllCaps="false"
             android:textSize="17sp" />
     </LinearLayout>
 
