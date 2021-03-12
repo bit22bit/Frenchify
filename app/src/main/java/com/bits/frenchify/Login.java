@@ -26,30 +26,61 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
     Button signup;
+    Button loginButton;
 
     Toolbar toolbar;
     LinearLayout mainContent;
     DrawerLayout root;
     LinearLayout toolbarLl;
 
-
-
-
     TextView signInMainTv;
     TextView nicetomeetTv;
     TextView emailMainTV;
     TextView passMainTv;
+    TextView loginAsGuest;
     TextView forgetpassTv;
 
     EditText emailmainEt;
     EditText passmainEt;
 
-     ProgressDialog progressDialog1;
-     FirebaseAuth firebaseAuth1;
+    ProgressDialog progressDialog1;
+    FirebaseAuth firebaseAuth1;
 
-    Button loginButton;
+    Boolean guestBro=false;
 
 
+
+    private boolean isValidEmail(CharSequence target) {
+
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+    private void initView(){
+
+        toolbar =  findViewById(R.id.toolbar);
+        mainContent = findViewById(R.id.mainContent_ll);
+        //pb=findViewById(R.id.loadingProgressBar);
+        toolbarLl=findViewById(R.id.toolbar_ll);
+        toolbar.setTitle("Welcome Back!!");
+        signup = findViewById(R.id.gotosignup_button);
+
+        root=findViewById(R.id.drawer_layout);
+        root.setBackgroundColor(ContextCompat.getColor(Login.this, R.color.white));
+        signInMainTv=findViewById(R.id.signin_main_tv);
+        nicetomeetTv=findViewById(R.id.nicetomeet_tv);
+        emailMainTV=findViewById(R.id.email_main_tv);
+        passMainTv=findViewById(R.id.pass_main_tv);
+        forgetpassTv=findViewById(R.id.pass_main_tv);
+        loginAsGuest = findViewById(R.id.asAGuest);
+
+        emailmainEt=findViewById(R.id.email_main_et);
+        passmainEt=findViewById(R.id.pass_main_et);
+        loginButton = findViewById(R.id.login_main_button);
+        firebaseAuth1= FirebaseAuth.getInstance();
+        progressDialog1=new ProgressDialog(this);
+
+
+    }
 
     public void gotoForgetPassPage(View view){
 
@@ -82,19 +113,25 @@ public class Login extends AppCompatActivity {
                 });
     }
 
+    public void gotoSignUpPage(View view){
+        startActivity(new Intent(Login.this, Signup.class));
 
 
+    }
+
+    public void continueAsAGuest(View view) {
+
+        guestBro=true;
+        Intent intent = new Intent(Login.this,LearningOrAssessment.class);
+        intent.putExtra("guestBro",guestBro);
+        startActivity(intent);
+
+    }
 
     public void login(View view){
 
-
-
         String email1= emailmainEt.getText().toString();
         String password1= passmainEt.getText().toString();
-
-
-
-
 
         if(TextUtils.isEmpty(email1)){
 
@@ -137,6 +174,10 @@ public class Login extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(false);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,47 +188,5 @@ public class Login extends AppCompatActivity {
 
 
     }
-
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(false);
-    }
-
-    private void initView(){
-
-        toolbar =  findViewById(R.id.toolbar);
-        mainContent = findViewById(R.id.mainContent_ll);
-        //pb=findViewById(R.id.loadingProgressBar);
-        toolbarLl=findViewById(R.id.toolbar_ll);
-        toolbar.setTitle("Welcome Back!!");
-        signup = findViewById(R.id.gotosignup_button);
-
-        root=findViewById(R.id.drawer_layout);
-        root.setBackgroundColor(ContextCompat.getColor(Login.this, R.color.white));
-        signInMainTv=findViewById(R.id.signin_main_tv);
-        nicetomeetTv=findViewById(R.id.nicetomeet_tv);
-        emailMainTV=findViewById(R.id.email_main_tv);
-        passMainTv=findViewById(R.id.pass_main_tv);
-        forgetpassTv=findViewById(R.id.pass_main_tv);
-
-        emailmainEt=findViewById(R.id.email_main_et);
-        passmainEt=findViewById(R.id.pass_main_et);
-        loginButton = findViewById(R.id.login_main_button);
-        firebaseAuth1= FirebaseAuth.getInstance();
-        progressDialog1=new ProgressDialog(this);
-
-
-    }
-    private boolean isValidEmail(CharSequence target) {
-
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
-    public void gotoSignUpPage(View view){
-        startActivity(new Intent(Login.this, Signup.class));
-
-
-    }
-
-
 
 }

@@ -10,12 +10,15 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.net.URISyntaxException;
+
 public class LearningOrAssessment extends AppCompatActivity {
 
     Button logout;
     Button gotoLearningAcivity;
     Button gotoAssessmentActivity;
-
+    boolean guestBro;
+    Intent intent;
 
 
     public void initViews(){
@@ -49,5 +52,17 @@ public class LearningOrAssessment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning_or_assessment);
         initViews();
+        guestBro=getIntent().getExtras().getBoolean("guestBro");
+        if(guestBro==true){
+
+            gotoAssessmentActivity.setVisibility(View.INVISIBLE);
+
+        }
+        else{
+
+            gotoAssessmentActivity.setVisibility(View.VISIBLE);
+
+        }
+
     }
 }
