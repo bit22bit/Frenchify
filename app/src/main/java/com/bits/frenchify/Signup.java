@@ -177,5 +177,26 @@ public class Signup extends AppCompatActivity {
 
     }
 
+    private void regwithUserId(String email,String password){
+
+        firebaseAuth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(!task.isSuccessful()){
+                            Toast.makeText(Signup.this, " not sucessFul", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else{
+                            userProfile();
+                            Toast.makeText(Signup.this, "Created ", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+
+    }
+
 
 }
