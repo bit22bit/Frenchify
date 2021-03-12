@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -31,7 +32,6 @@ public class Login extends AppCompatActivity {
     LinearLayout mainContent;
     DrawerLayout root;
     LinearLayout toolbarLl;
-
 
 
 
@@ -54,6 +54,7 @@ public class Login extends AppCompatActivity {
     public void gotoForgetPassPage(View view){
 
         Toast.makeText(this, "Goto Forgot Password Page", Toast.LENGTH_SHORT).show();
+        String email = emailmainEt.getText().toString();
     }
 
     private void initView(){
@@ -160,11 +161,12 @@ public class Login extends AppCompatActivity {
 
     }
 
+
     @Override
     public void onBackPressed() {
         moveTaskToBack(false);
-    }
 
 
 
-}
+
+}}
