@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,6 +34,7 @@ public class Login extends AppCompatActivity {
 
 
 
+
     TextView signInMainTv;
     TextView nicetomeetTv;
     TextView emailMainTV;
@@ -53,46 +53,42 @@ public class Login extends AppCompatActivity {
 
     public void gotoForgetPassPage(View view){
 
-        Toast.makeText(this, "Goto Forgot Password Page", Toast.LENGTH_SHORT).show();
-        String email = emailmainEt.getText().toString();
+        if(TextUtils.isEmpty(emailmainEt.getText().toString())){
+
+            emailmainEt.setError("Please! Enter Your Email here to reset the password");
+            return;
+        }
+
+        else if(!isValidEmail(emailmainEt.getText().toString())){
+            emailmainEt.setError("Invalid email, Please write correct email to get reset link");
+            return;
+        }
+
+        progressDialog1.setMessage("Please wait....");
+        progressDialog1.show();
+        progressDialog1.setCanceledOnTouchOutside(false);
+
+        firebaseAuth1.sendPasswordResetEmail(emailmainEt.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Login.this, "password link has been sent to above email address", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Login.this, "Sorry! Something went Wrong..", Toast.LENGTH_SHORT).show();
+                        }
+                        progressDialog1.dismiss();
+                    }
+                });
     }
 
-    private void initView(){
-
-        toolbar =  findViewById(R.id.toolbar);
-        mainContent = findViewById(R.id.mainContent_ll);
-        //pb=findViewById(R.id.loadingProgressBar);
-        toolbarLl=findViewById(R.id.toolbar_ll);
-        toolbar.setTitle("Welcome Back!!");
-        signup = findViewById(R.id.gotosignup_button);
-
-        root=findViewById(R.id.drawer_layout);
-        root.setBackgroundColor(ContextCompat.getColor(Login.this, R.color.white));
-        signInMainTv=findViewById(R.id.signin_main_tv);
-        nicetomeetTv=findViewById(R.id.nicetomeet_tv);
-        emailMainTV=findViewById(R.id.email_main_tv);
-        passMainTv=findViewById(R.id.pass_main_tv);
-        forgetpassTv=findViewById(R.id.pass_main_tv);
-
-        emailmainEt=findViewById(R.id.email_main_et);
-        passmainEt=findViewById(R.id.pass_main_et);
-        loginButton = findViewById(R.id.login_main_button);
-        firebaseAuth1= FirebaseAuth.getInstance();
-        progressDialog1=new ProgressDialog(this);
-
-
-
-    }
 
     public void gotoSignUpPage(View view){
         startActivity(new Intent(Login.this, Signup.class));
 
-        
-    }
-    private boolean isValidEmail(CharSequence target) {
 
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+
     public void login(View view){
 
 
@@ -134,7 +130,7 @@ public class Login extends AppCompatActivity {
                     Intent intent = new Intent(Login.this,LearningOrAssessment.class);
                     startActivity(intent);
                     finish();
-                }   
+                }
                 else{
                     Toast.makeText(Login.this, "Not Logged In", Toast.LENGTH_SHORT).show();
                 }
@@ -142,11 +138,6 @@ public class Login extends AppCompatActivity {
                 progressDialog1.dismiss();
             }
         });
-
-
-
-
-
 
     }
 
@@ -161,12 +152,41 @@ public class Login extends AppCompatActivity {
 
     }
 
-
     @Override
     public void onBackPressed() {
         moveTaskToBack(false);
+    }
+
+    private void initView(){
+
+        toolbar =  findViewById(R.id.toolbar);
+        mainContent = findViewById(R.id.mainContent_ll);
+        //pb=findViewById(R.id.loadingProgressBar);
+        toolbarLl=findViewById(R.id.toolbar_ll);
+        toolbar.setTitle("Welcome Back!!");
+        signup = findViewById(R.id.gotosignup_button);
+
+        root=findViewById(R.id.drawer_layout);
+        root.setBackgroundColor(ContextCompat.getColor(Login.this, R.color.white));
+        signInMainTv=findViewById(R.id.signin_main_tv);
+        nicetomeetTv=findViewById(R.id.nicetomeet_tv);
+        emailMainTV=findViewById(R.id.email_main_tv);
+        passMainTv=findViewById(R.id.pass_main_tv);
+        forgetpassTv=findViewById(R.id.pass_main_tv);
+
+        emailmainEt=findViewById(R.id.email_main_et);
+        passmainEt=findViewById(R.id.pass_main_et);
+        loginButton = findViewById(R.id.login_main_button);
+        firebaseAuth1= FirebaseAuth.getInstance();
+        progressDialog1=new ProgressDialog(this);
+
+
+    }
+    private boolean isValidEmail(CharSequence target) {
+
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
 
 
 
-
-}}
+}
