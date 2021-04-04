@@ -8,7 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -19,9 +21,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Signup extends AppCompatActivity {
@@ -45,94 +54,92 @@ public class Signup extends AppCompatActivity {
     Button gotoSignin;
 
     CheckBox condition;
+    Boolean guestBro = false;
 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    FirebaseFirestore firestore;
+    String userId;
+    FirebaseUser firebaseUser;
 
-    private void initViews(){
+    String checkBoxText;
+
+    private void initViews() {
 
         rootLayout = findViewById(R.id.rootLayout);
-        toolbar =  findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Welcome to Frenchify");
         signUptv = findViewById(R.id.userName_tv);
         usernameTv = findViewById(R.id.userName_tv);
         emailTv = findViewById(R.id.email_tv);
-        passTv=findViewById(R.id.pass_tv);
-        verifypassTv=findViewById(R.id.verifypass_tv);
-        haveAnAccountTv =findViewById(R.id.haveAnAccount_tv);
+        passTv = findViewById(R.id.pass_tv);
+        verifypassTv = findViewById(R.id.verifypass_tv);
+        haveAnAccountTv = findViewById(R.id.haveAnAccount_tv);
 
         usernameEt = findViewById(R.id.userName_et);
-        emailEt =  findViewById(R.id.email_et);
-        passEt=findViewById(R.id.pass_et);
-        verifypassEt=findViewById(R.id.verifypass_et);
+        emailEt = findViewById(R.id.email_et);
+        passEt = findViewById(R.id.pass_et);
+        verifypassEt = findViewById(R.id.verifypass_et);
 
-        signUp=findViewById(R.id.signUp_button);
-        gotoSignin=findViewById(R.id.gotoSignIn_button);
+        signUp = findViewById(R.id.signUp_button);
+        gotoSignin = findViewById(R.id.gotoSignIn_button);
 
-        condition=findViewById(R.id.condition_cb);
+        condition = findViewById(R.id.condition_cb);
+        checkBoxText = "I agree to all the <a href='https://drive.google.com/file/d/16FXfD3jM9t0awDGWOsk5BnXeKJjVfo4H/view?usp=drivesdk'> Terms and Conditions and Privacy Policy</a>";
+        condition.setText(Html.fromHtml(checkBoxText));
+        condition.setMovementMethod(LinkMovementMethod.getInstance());
+
+
 
         firebaseAuth = FirebaseAuth.getInstance();
-        progressDialog=new ProgressDialog(this);
+        firestore=FirebaseFirestore.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        progressDialog = new ProgressDialog(this);
+
 
 
     }
 
 
-
-    public void gotoSignInPage(View view){
+    public void gotoSignInPage(View view) {
 
         startActivity(new Intent(Signup.this, Login.class));
 
     }
 
-    public void authProcess(View view){
-
-                register();
-
-
-    }
-
-    private void register() {
+    public void authProcess(View view) {
 
         String username = usernameEt.getText().toString();
-        String email= emailEt.getText().toString();
-        String password= passEt.getText().toString();
-        String verifyPassword= verifypassEt.getText().toString();
+        String email = emailEt.getText().toString();
+        String password = passEt.getText().toString();
+        String verifyPassword = verifypassEt.getText().toString();
 
-        if(TextUtils.isEmpty(username)){
+        if (TextUtils.isEmpty(username)) {
 
             usernameEt.setError("Please! Enter Your Username");
             return;
-        }
-        else if(TextUtils.isEmpty(email)){
+        } else if (TextUtils.isEmpty(email)) {
 
             emailEt.setError("Please! Enter Your Email");
             return;
-        }
-        else if(TextUtils.isEmpty(password)){
+        } else if (TextUtils.isEmpty(password)) {
 
             passEt.setError("Please! Enter Your Password");
             return;
-        }
-        else if(TextUtils.isEmpty(verifyPassword)){
+        } else if (TextUtils.isEmpty(verifyPassword)) {
 
             verifypassEt.setError("Please! Reenter Your Password");
             return;
-        }
-        else if(password.length()<=5){
-             passEt.setError("Please! Enter Your Password > 5 words or numbers");
+        } else if (password.length() <= 5) {
+            passEt.setError("Please! Enter Your Password > 5 words or numbers");
             return;
-        }
-        else if(!password.equals(verifyPassword)){
+        } else if (!password.equals(verifyPassword)) {
             verifypassEt.setError("Password does not match");
             return;
-        }
-
-        else if(!isValidEmail(email)){
+        } else if (!isValidEmail(email)) {
             emailEt.setError("Invalid email");
             return;
-        }
-        else if(condition.isChecked()==false){
+        } else if (condition.isChecked() == false) {
             condition.setError("Please accept the terms");
             return;
         }
@@ -140,17 +147,27 @@ public class Signup extends AppCompatActivity {
         progressDialog.setMessage("Please wait....");
         progressDialog.show();
         progressDialog.setCanceledOnTouchOutside(false);
-        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(Signup.this, "Sucessfully registered", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Signup.this,LearningOrAssessment.class);
-                    startActivity(intent);
-                    finish();
 
-                }
-                else{
+                    userId = firebaseAuth.getCurrentUser().getUid();
+                    DocumentReference documentReference=firestore.collection("users").document(userId);
+
+                    Map<String , Object> user = new HashMap<>();
+                    user.put("UserName",username);
+                    user.put("email",email);
+                    documentReference.set(user).addOnSuccessListener(aVoid -> {
+
+
+                        Toast.makeText(Signup.this, "UserProfile has been created ", Toast.LENGTH_SHORT).show();
+                    });
+
+                    updateUI(firebaseUser);
+
+                } else {
 
                     Toast.makeText(Signup.this, "Sucessfully not registered", Toast.LENGTH_SHORT).show();
 
@@ -159,6 +176,18 @@ public class Signup extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+
+    public void updateUI(FirebaseUser user)
+    {
+        Intent intent = new Intent(Signup.this,LearningOrAssessment.class);
+        intent.putExtra("guestBro",guestBro);
+
+        startActivity(intent);
+        finish();
     }
 
     private boolean isValidEmail(CharSequence target) {
@@ -170,6 +199,7 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         initViews();
@@ -177,26 +207,5 @@ public class Signup extends AppCompatActivity {
 
     }
 
-    private void regwithUserId(String email,String password){
-
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if(!task.isSuccessful()){
-                            Toast.makeText(Signup.this, " not sucessFul", Toast.LENGTH_SHORT).show();
-
-                        }
-                        else{
-                            userProfile();
-                            Toast.makeText(Signup.this, "Created ", Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                });
-
-    }
-
-
 }
+

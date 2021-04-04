@@ -56,7 +56,7 @@ public class SplaceScreen extends AppCompatActivity {
         ViewPropertyAnimator viewPropertyAnimator = imageView.animate();
         viewPropertyAnimator.setDuration(11000);
 
-        viewPropertyAnimator.yBy(-10000f).alpha(-12f);
+        viewPropertyAnimator.yBy(-8000f).alpha(-12f);
 
 
 

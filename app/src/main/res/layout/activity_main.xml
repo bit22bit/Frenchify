@@ -153,6 +153,7 @@
                 android:clickable="true"
                 android:textSize="17sp"
                 android:onClick="gotoForgetPassPage"
+
                 />
 
             <Button

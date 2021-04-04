@@ -13,11 +13,12 @@
         android:id="@+id/include"
         layout="@layout/toolbar_layout" />
 
+
     <Button
         android:id="@+id/gotoLearningActivity_button"
         android:layout_width="251dp"
         android:layout_height="86dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="148dp"
         android:backgroundTint="#00FFFFFF"
         android:onClick="gotoLearning"
         android:text="Learning"
@@ -31,7 +32,7 @@
         android:id="@+id/gotoAssessmentActivity_button"
         android:layout_width="251dp"
         android:layout_height="86dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="76dp"
         android:backgroundTint="#00FFFFFF"
         android:onClick="gotoAssessment"
         android:text="Assessment"
@@ -45,13 +46,28 @@
         android:id="@+id/logOut"
         android:layout_width="156dp"
         android:layout_height="79dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="72dp"
         android:backgroundTint="#00FFFFFF"
         android:onClick="logout"
         android:text="Logout"
         android:textColorHint="#FFFFFF"
         android:textColorLink="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gotoAssessmentActivity_button" />
+
+    <TextView
+        android:id="@+id/userNameAL_tv"
+        android:layout_width="231dp"
+        android:layout_height="78dp"
+        android:gravity="center"
+        android:text="Hi "
+        android:textSize="30sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/gotoLearningActivity_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.228" />
 </androidx.constraintlayout.widget.ConstraintLayout>

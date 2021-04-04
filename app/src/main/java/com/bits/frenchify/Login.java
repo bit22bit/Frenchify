@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     Button signup;
@@ -45,6 +46,7 @@ public class Login extends AppCompatActivity {
 
     ProgressDialog progressDialog1;
     FirebaseAuth firebaseAuth1;
+    FirebaseUser currentUser;
 
     Boolean guestBro=false;
 
@@ -79,7 +81,17 @@ public class Login extends AppCompatActivity {
         firebaseAuth1= FirebaseAuth.getInstance();
         progressDialog1=new ProgressDialog(this);
 
+        currentUser = firebaseAuth1.getCurrentUser();
 
+
+    }
+    public void updateUI(FirebaseUser user)
+    {
+        Intent intent = new Intent(Login.this,LearningOrAssessment.class);
+        intent.putExtra("guestBro",guestBro);
+        //intent.putExtra("user",user);
+        startActivity(intent);
+        finish();
     }
 
     public void gotoForgetPassPage(View view){
@@ -125,6 +137,7 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(Login.this,LearningOrAssessment.class);
         intent.putExtra("guestBro",guestBro);
         startActivity(intent);
+        finish();
 
     }
 
@@ -160,9 +173,10 @@ public class Login extends AppCompatActivity {
                 if(task.isSuccessful()){
 
                     Toast.makeText(Login.this, "Loged In", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Login.this,LearningOrAssessment.class);
-                    startActivity(intent);
-                    finish();
+                    currentUser = firebaseAuth1.getCurrentUser();
+                    updateUI(currentUser);
+
+
                 }
                 else{
                     Toast.makeText(Login.this, "Not Logged In", Toast.LENGTH_SHORT).show();
@@ -185,6 +199,11 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        if (currentUser != null)
+        {
+            updateUI(currentUser);
+            Toast.makeText(getApplicationContext(),"User Already Signing",Toast.LENGTH_LONG).show();
+        }
 
 
     }
