@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
         mainContent = findViewById(R.id.mainContent_ll);
         //pb=findViewById(R.id.loadingProgressBar);
         toolbarLl=findViewById(R.id.toolbar_ll);
-        toolbar.setTitle("Welcome Back!!");
+        toolbar.setTitle("Welcome to Frenchify!!");
         signup = findViewById(R.id.gotosignup_button);
 
         root=findViewById(R.id.drawer_layout);

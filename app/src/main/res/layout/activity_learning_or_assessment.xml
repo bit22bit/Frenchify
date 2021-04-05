@@ -1,73 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".LearningOrAssessment"
-    android:id="@+id/rootLayout"
+    android:fitsSystemWindows="true"
+    android:id="@+id/rootLayoutLA"
     >
 
-    <include
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/toolbar_ll"
+        android:visibility="visible"
+        >
+        <include
         android:id="@+id/include"
         layout="@layout/toolbar_layout" />
 
+        <TextView
+            android:id="@+id/userNameAL_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome Harsh!"
+            android:textSize="50sp"
+            android:layout_marginTop="55dp"
+            android:layout_gravity="center"
+            />
 
-    <Button
-        android:id="@+id/gotoLearningActivity_button"
-        android:layout_width="251dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="148dp"
-        android:backgroundTint="#00FFFFFF"
-        android:onClick="gotoLearning"
-        android:text="Learning"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        <Button
+            android:id="@+id/gotoLearningActivity_button"
+            android:layout_width="271dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="116dp"
+            android:backgroundTint="#00FFFFFF"
+            android:onClick="gotoLearning"
+            android:text="Learning"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:layout_gravity="center"
 
-    <Button
-        android:id="@+id/gotoAssessmentActivity_button"
-        android:layout_width="251dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="76dp"
-        android:backgroundTint="#00FFFFFF"
-        android:onClick="gotoAssessment"
-        android:text="Assessment"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gotoLearningActivity_button" />
+            />
 
-    <Button
-        android:id="@+id/logOut"
-        android:layout_width="156dp"
-        android:layout_height="79dp"
-        android:layout_marginTop="72dp"
-        android:backgroundTint="#00FFFFFF"
-        android:onClick="logout"
-        android:text="Logout"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gotoAssessmentActivity_button" />
+        <Button
+            android:id="@+id/gotoAssessmentActivity_button"
+            android:layout_width="271dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="76dp"
+            android:backgroundTint="#00FFFFFF"
+            android:onClick="gotoAssessment"
+            android:text="Assessment"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:layout_gravity="center"
 
-    <TextView
-        android:id="@+id/userNameAL_tv"
-        android:layout_width="231dp"
-        android:layout_height="78dp"
-        android:gravity="center"
-        android:text="Hi "
-        android:textSize="30sp"
+            />
 
-        app:layout_constraintBottom_toTopOf="@+id/gotoLearningActivity_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.228" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_layout" />
+
+
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
