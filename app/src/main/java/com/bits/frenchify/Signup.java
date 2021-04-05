@@ -185,7 +185,7 @@ public class Signup extends AppCompatActivity {
     {
         Intent intent = new Intent(Signup.this,LearningOrAssessment.class);
         intent.putExtra("guestBro",guestBro);
-
+        intent.putExtra("user",user);
         startActivity(intent);
         finish();
     }

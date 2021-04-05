@@ -89,7 +89,7 @@ public class Login extends AppCompatActivity {
     {
         Intent intent = new Intent(Login.this,LearningOrAssessment.class);
         intent.putExtra("guestBro",guestBro);
-        //intent.putExtra("user",user);
+        intent.putExtra("user",user);
         startActivity(intent);
         finish();
     }
