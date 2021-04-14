@@ -59,8 +59,10 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
 
         nav_view = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
+
 
         rootLayout = findViewById(R.id.rootLayoutLA);
          toggle= new ActionBarDrawerToggle(this, rootLayout, toolbar,
