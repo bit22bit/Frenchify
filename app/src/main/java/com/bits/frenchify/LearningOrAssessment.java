@@ -80,6 +80,7 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
     public void gotoLearning(View view){
 
         Toast.makeText(this, "goto Learning Activity", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this,Learning.class));
 
     }
     public void gotoAssessment(View view){

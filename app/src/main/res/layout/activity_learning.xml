@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Learning">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/LearningLayoutLL"
+        android:orientation="vertical"
+        >
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/question_tv"
+       android:text="Are you Ready ??"
+       android:layout_marginTop="30dp"
+       android:textSize="40sp"
+       />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/answer_tv"
+        android:text="To Learn French!!!"
+        android:textSize="40sp"
+        android:layout_marginTop="40dp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextQuestionButton"
+        android:layout_marginTop="30dp"
+        android:text="Next"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+
+        />
+    </LinearLayout>
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
