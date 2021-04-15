@@ -32,7 +32,7 @@ public class SplaceScreen extends AppCompatActivity {
 
     }
     public void time(){
-        new CountDownTimer(3500, 1000) {
+        new CountDownTimer(2000, 150) {
             @Override
             public void onTick(long millisUntilFnished) {
                 constraintLayout.setBackgroundColor(ContextCompat.getColor(SplaceScreen.this, R.color.black));
@@ -54,9 +54,9 @@ public class SplaceScreen extends AppCompatActivity {
 
 
         ViewPropertyAnimator viewPropertyAnimator = imageView.animate();
-        viewPropertyAnimator.setDuration(21000);
+        viewPropertyAnimator.setDuration(2200);
 
-        viewPropertyAnimator.yBy(-8000f).alpha(-12f);
+        viewPropertyAnimator.yBy(-3500f).alpha(-10f);
 
 
 
