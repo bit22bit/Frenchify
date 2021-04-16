@@ -16,7 +16,7 @@
         <activity android:name=".Login" />
         <activity
             android:name=".LearningOrAssessment"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+             />
         <activity android:name=".Signup" />
         <activity android:name=".SplaceScreen">
             <intent-filter>

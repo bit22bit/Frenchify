@@ -58,10 +58,10 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
         user = firebaseAuth.getCurrentUser();
 
         nav_view = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar_for_nav);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
 
         rootLayout = findViewById(R.id.rootLayoutLA);
