@@ -29,4 +29,10 @@
     <style name="Widget.AppCompat.ProgressBar.Horizontal">
         <item name="colorAccent">@color/black</item>
     </style>
+
+    <style name="myNavigationDrawerStyle" >
+        <item name="android:textSize">36dp</item>
+
+    </style>
+
 </resources>

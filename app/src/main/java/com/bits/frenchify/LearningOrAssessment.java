@@ -29,8 +29,7 @@ import java.net.URISyntaxException;
 public class LearningOrAssessment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    Button gotoLearningAcivity;
-    Button gotoAssessmentActivity;
+    Button gotoLearningAcivity,gotoAssessmentActivity;
     Toolbar toolbar;
     boolean guestBro;
     FirebaseUser user;
@@ -42,6 +41,7 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
     DrawerLayout rootLayout;
 
     ActionBarDrawerToggle toggle;
+    Intent intent;
 
 
 
@@ -58,6 +58,7 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
         user = firebaseAuth.getCurrentUser();
 
         nav_view = findViewById(R.id.nav_view);
+        nav_view.setItemIconTintList(null);
         toolbar = findViewById(R.id.toolbar_for_nav);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -151,8 +152,9 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
 
             case R.id.nav_profile:
 
-                Toast.makeText(this, "goto profile activity", Toast.LENGTH_SHORT).show();
-                
+                intent = new Intent(LearningOrAssessment.this, ProfileActivity.class);
+                startActivity(intent);
+                finish();
                 break;
                 
             case R.id.nav_scorecard:
@@ -168,7 +170,7 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
                 
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(LearningOrAssessment.this, Login.class);
+                intent = new Intent(LearningOrAssessment.this, Login.class);
                 startActivity(intent);
                 finish();
                 break;

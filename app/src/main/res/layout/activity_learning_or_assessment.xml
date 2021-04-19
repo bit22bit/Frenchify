@@ -33,12 +33,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:textSize="50sp"
-            android:layout_marginTop="55dp"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            />
+            android:layout_marginTop="55dp"
+            android:textColor="#000000"
+            android:textSize="50sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/gotoLearningActivity_button"
@@ -74,8 +73,11 @@
         android:layout_width="310dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:theme="@style/myNavigationDrawerStyle"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_layout" />
+        app:menu="@menu/drawer_layout"
+
+        />
 
 
 

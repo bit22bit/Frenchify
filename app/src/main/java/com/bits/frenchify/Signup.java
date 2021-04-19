@@ -38,20 +38,11 @@ public class Signup extends AppCompatActivity {
     LinearLayout rootLayout;
     Toolbar toolbar;
 
-    TextView signUptv;
-    TextView usernameTv;
-    TextView emailTv;
-    TextView passTv;
-    TextView verifypassTv;
-    TextView haveAnAccountTv;
+    TextView signUptv,usernameTv,emailTv,passTv,verifypassTv,haveAnAccountTv;
 
-    EditText usernameEt;
-    EditText emailEt;
-    EditText passEt;
-    EditText verifypassEt;
+    EditText usernameEt,emailEt,passEt,verifypassEt;
 
-    Button signUp;
-    Button gotoSignin;
+    Button signUp,gotoSignin;
 
     CheckBox condition;
     Boolean guestBro = false;
@@ -59,10 +50,10 @@ public class Signup extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
-    String userId;
+
     FirebaseUser firebaseUser;
 
-    String checkBoxText;
+    String checkBoxText,userId;;
 
     private void initViews() {
 

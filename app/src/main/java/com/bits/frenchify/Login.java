@@ -26,23 +26,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
-    Button signup;
-    Button loginButton;
+    Button signup,loginButton;
 
     Toolbar toolbar;
     LinearLayout mainContent;
     DrawerLayout root;
     LinearLayout toolbarLl;
 
-    TextView signInMainTv;
-    TextView nicetomeetTv;
-    TextView emailMainTV;
-    TextView passMainTv;
-    TextView loginAsGuest;
-    TextView forgetpassTv;
-
-    EditText emailmainEt;
-    EditText passmainEt;
+    TextView signInMainTv,nicetomeetTv,emailMainTV,passMainTv,forgetpassTv,loginAsGuest;
+    EditText emailmainEt,passmainEt;
 
     ProgressDialog progressDialog1;
     FirebaseAuth firebaseAuth1;

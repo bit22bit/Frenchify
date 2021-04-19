@@ -13,6 +13,7 @@
         android:theme="@style/Theme.Frenchify">
         <activity android:name=".CategoriesOfLearning"></activity>
         <activity android:name=".Learning" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".Login" />
         <activity
             android:name=".LearningOrAssessment"

@@ -27,25 +27,32 @@ public class CategoriesOfLearning extends AppCompatActivity {
     };
 
     String[] subtitle ={
-            "In this Module we learn WeekDays",
-            "In this Module we learn Months",
-            "In this Module we learn Greeting",
-            "In this Module we learn General words",
-            "In this Module we learn Numbers",
-            "In this Module we learn Color",
-            "In this Module we learn Sentences"
+            " In this Module we learn WeekDays",
+            " In this Module we learn Months",
+            " In this Module we learn Greeting",
+            " In this Module we learn General words",
+            " In this Module we learn Numbers",
+            " In this Module we learn Color",
+            " In this Module we learn Sentences"
     };
 
     Integer[] imgid={
-            R.drawable.week_list,
-            R.drawable.month_list,
-            R.drawable.greet_list,
-            R.drawable.word_list,
-            R.drawable.numbers_list,
-            R.drawable.color_list,
-            R.drawable.sentences_list,
+            R.drawable.week_list_color,
+            R.drawable.months_list_color,
+            R.drawable.greeting_list_color,
+            R.drawable.word_list_color,
+            R.drawable.number_list_color,
+            R.drawable.color_list_color,
+            R.drawable.sentences_list_color,
 
     };
+
+    public void sendCategories(String categories){
+        intent= new Intent(getApplicationContext(),Learning.class);
+        intent.putExtra("category",categories);
+        startActivity(intent);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,48 +72,32 @@ public class CategoriesOfLearning extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if(position == 0) {
-                    //code specific to first list item
-
-                    //Toast.makeText(getApplicationContext(),"WeekDays Learning (:",Toast.LENGTH_SHORT).show();
-                    intent= new Intent(getApplicationContext(),Learning.class);
-                    intent.putExtra("category","Weekdays");
-                    startActivity(intent);
-
+                    sendCategories("WeekDay");
                 }
 
                 else if(position == 1) {
-                    //code specific to 2nd list item
-                    //Toast.makeText(getApplicationContext(),"Months Learning (:",Toast.LENGTH_SHORT).show();
-                    intent= new Intent(getApplicationContext(),Learning.class);
-                    intent.putExtra("category","Months");
-                    startActivity(intent);
+                 sendCategories("Months");
                 }
 
                 else if(position == 2) {
-
-                    Toast.makeText(getApplicationContext(), "Greeting Learning (:", Toast.LENGTH_SHORT).show();
-                    //intent = new Intent(getApplicationContext(), Learning.class);
-                    //intent.putExtra("cat_months", "Weekdays");
-                    //startActivity(intent);
+                    sendCategories("Greetings");
                 }
                 else if(position == 3) {
 
-                    Toast.makeText(getApplicationContext(),"General Words Learning (:",Toast.LENGTH_SHORT).show();
-//                    intent= new Intent(getApplicationContext(),Learning.class);
-//                    intent.putExtra("cat_months","Weekdays");
-//                    startActivity(intent);
+                    sendCategories("Words");
+//
                 }
                 else if(position == 4) {
 
-                    Toast.makeText(getApplicationContext(),"Numbers Learning (:",Toast.LENGTH_SHORT).show();
+                    sendCategories("Numbers");
                 }
                 else if(position == 5) {
 
-                    Toast.makeText(getApplicationContext(),"colors Learning (:",Toast.LENGTH_SHORT).show();
+                    sendCategories("Colors");
                 }
                 else if(position == 6) {
 
-                    Toast.makeText(getApplicationContext(),"Sentences Learning (:",Toast.LENGTH_SHORT).show();
+                    sendCategories("Sentences");
                 }
 
             }

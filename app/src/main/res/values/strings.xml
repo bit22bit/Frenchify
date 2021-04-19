@@ -2,5 +2,27 @@
     <string name="app_name">Frenchify</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="no_image">No Image</string>
+    <string name="sign_in">Sign In</string>
+    <string name="hi_there_nice_to_meet_you_again">Hi there! nice to meet you again</string>
+    <string name="hint_email">Email</string>
+    <string name="example_email">example@gmail.com</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="tv_forgot_password">Forgot Password ?</string>
+    <string name="tv_continue_as_a_guest"><![CDATA[Continue as a guest >>]]></string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="tv_sign_up">Sign Up</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_nationality">Nationality</string>
+    <string name="hint_occupation">Occupation</string>
+    <string name="hint_age">Age</string>
+    <string name="hint_verify_password">Verify password</string>
+    <string name="tv_agreement">I agree to all the <a href='https://drive.google.com/file/d/16FXfD3jM9t0awDGWOsk5BnXeKJjVfo4H/view?usp=drivesdk'> Terms and Conditions and Privacy Policy</a></string>
+    <string name="btn_existing_ac">Already an Account ? Sign in</string>
+    <string name="btn_learning">Learning</string>
+    <string name="btn_assessment">Assessment</string>
+    <string name="btn_update_profile">Update profile</string>
+    <string name="heading_profile">Profile</string>
 </resources>

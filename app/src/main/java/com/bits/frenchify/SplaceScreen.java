@@ -32,7 +32,7 @@ public class SplaceScreen extends AppCompatActivity {
 
     }
     public void time(){
-        new CountDownTimer(2000, 150) {
+        new CountDownTimer(2000, 130) {
             @Override
             public void onTick(long millisUntilFnished) {
                 constraintLayout.setBackgroundColor(ContextCompat.getColor(SplaceScreen.this, R.color.black));
