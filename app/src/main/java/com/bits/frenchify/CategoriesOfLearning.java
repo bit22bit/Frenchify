@@ -15,6 +15,7 @@ public class CategoriesOfLearning extends AppCompatActivity {
     ListView list;
     Toolbar toolbar;
     Intent intent;
+    boolean guestBro;
 
     String[] maintitle ={
             "WeekDays",
@@ -61,6 +62,22 @@ public class CategoriesOfLearning extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Categories of Learning Modules");
+        guestBro=getIntent().getExtras().getBoolean("guestBro");
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CategoriesOfLearning.this,LearningOrAssessment.class);
+                intent.putExtra("guestBro",guestBro);
+                //intent.putExtra("UserName",etFirstName.getText().toString());
+                startActivity(intent);
+                finish();
+            }
+        });
 
         MyListView adapter=new MyListView(this, maintitle, subtitle,imgid);
         list=(ListView)findViewById(R.id.list);

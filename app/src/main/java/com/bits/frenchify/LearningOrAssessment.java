@@ -81,7 +81,11 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
     public void gotoLearning(View view){
 
         //Toast.makeText(this, "goto Learning Activity", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this,CategoriesOfLearning.class));
+       // startActivity(new Intent(this,CategoriesOfLearning.class));
+        Intent intent=new Intent(this,CategoriesOfLearning.class);
+        intent.putExtra("guestBro",guestBro);
+        startActivity(intent);
+
 
     }
     public void gotoAssessment(View view){
@@ -132,7 +136,11 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
         if(guestBro==true){
 
             gotoAssessmentActivity.setVisibility(View.INVISIBLE);
-            usernameTv.setVisibility(View.INVISIBLE);
+            usernameTv.setText("You are in Guest Mode");
+
+
+
+
 
         }
         else{
@@ -141,6 +149,7 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
             readFireStore();
 
         }
+
 
 
     }
@@ -152,14 +161,25 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
 
             case R.id.nav_profile:
 
-                intent = new Intent(LearningOrAssessment.this, ProfileActivity.class);
-                startActivity(intent);
-                finish();
+                if(guestBro){
+                    Toast.makeText(this, "You can not in Guest Mode", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    intent = new Intent(LearningOrAssessment.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
                 break;
                 
             case R.id.nav_scorecard:
-                
-                Toast.makeText(this, "open firebase scoreCard", Toast.LENGTH_SHORT).show();
+
+                if(guestBro){
+                    Toast.makeText(this, "You can not in Guest Mode", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    Toast.makeText(this, "open firebase scoreCard", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.nav_mail:

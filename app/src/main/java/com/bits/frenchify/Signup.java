@@ -88,6 +88,22 @@ public class Signup extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Signup.this,Login.class);
+                //intent.putExtra("guestBro",guestBro);
+                //intent.putExtra("UserName",etFirstName.getText().toString());
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
 
     }
 
