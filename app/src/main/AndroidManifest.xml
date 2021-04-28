@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Frenchify">
-        <activity android:name=".CategoriesOfLearning"></activity>
+        <activity android:name=".Quiz"></activity>
+        <activity android:name=".CategoriesOfAssessment" />
+        <activity android:name=".CategoriesOfLearning" />
         <activity android:name=".Learning" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".Login" />
-        <activity
-            android:name=".LearningOrAssessment"
-             />
+        <activity android:name=".LearningOrAssessment" />
         <activity android:name=".Signup" />
         <activity android:name=".SplaceScreen">
             <intent-filter>

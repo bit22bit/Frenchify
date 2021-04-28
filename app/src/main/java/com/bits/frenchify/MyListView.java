@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MyListView extends ArrayAdapter<String> {
 
     private final Activity context;
-    private final String[] maintitle;
+    private final String[] mainTitle;
     private final String[] subtitle;
     private final Integer[] imgid;
 
@@ -20,7 +20,7 @@ public class MyListView extends ArrayAdapter<String> {
         // TODO Auto-generated constructor stub
 
         this.context=context;
-        this.maintitle=maintitle;
+        this.mainTitle =maintitle;
         this.subtitle=subtitle;
         this.imgid=imgid;
 
@@ -34,7 +34,7 @@ public class MyListView extends ArrayAdapter<String> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         TextView subtitleText = (TextView) rowView.findViewById(R.id.subtitle);
 
-        titleText.setText(maintitle[position]);
+        titleText.setText(mainTitle[position]);
         imageView.setImageResource(imgid[position]);
         subtitleText.setText(subtitle[position]);
 

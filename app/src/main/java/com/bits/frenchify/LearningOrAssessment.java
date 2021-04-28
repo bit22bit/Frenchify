@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -90,7 +91,10 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
     }
     public void gotoAssessment(View view){
 
-        Toast.makeText(this, "goto Assessment Activity", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "goto Assessment Activity", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this,CategoriesOfAssessment.class);
+        intent.putExtra("guestBro",guestBro);
+        startActivity(intent);
     }
 
     @Override
@@ -139,9 +143,6 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
             usernameTv.setText("You are in Guest Mode");
 
 
-
-
-
         }
         else{
 
@@ -171,10 +172,12 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
                 }
                 break;
                 
+                
+                
             case R.id.nav_scorecard:
 
                 if(guestBro){
-                    Toast.makeText(this, "You can not in Guest Mode", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "You can not do it in Guest Mode", Toast.LENGTH_SHORT).show();
                 }
                 else {
 
@@ -188,12 +191,30 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
                 
                 break;
                 
+            case R.id.nav_Materials:
+                
+                if(guestBro){
+
+                    Toast.makeText(this, "You can't do it in guest mode!", Toast.LENGTH_SHORT).show();
+                    
+                }
+                else {
+
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://drive.google.com/file/d/1VyJbKoRR8yHxOGomDSC0f7fZgrbWUlXH/view?usp=sharing")));
+
+                    Toast.makeText(this, "You will be able to download soon", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+                
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
                 intent = new Intent(LearningOrAssessment.this, Login.class);
                 startActivity(intent);
                 finish();
                 break;
+                
+                
         }
         rootLayout.closeDrawer(GravityCompat.START);
         return true;
