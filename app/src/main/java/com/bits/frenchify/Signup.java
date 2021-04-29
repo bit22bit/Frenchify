@@ -161,8 +161,8 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(Signup.this, "Sucessfully registered", Toast.LENGTH_SHORT).show();
 
                     userId = firebaseAuth.getCurrentUser().getUid();
-                    DocumentReference documentReference=firestore.collection("users").document(userId);
 
+                    DocumentReference documentReference=firestore.collection("users").document(userId);
                     Map<String , Object> user = new HashMap<>();
                     user.put("UserName",username);
                     user.put("email",email);

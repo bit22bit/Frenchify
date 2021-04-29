@@ -181,7 +181,10 @@ public class LearningOrAssessment extends AppCompatActivity implements Navigatio
                 }
                 else {
 
-                    Toast.makeText(this, "open firebase scoreCard", Toast.LENGTH_SHORT).show();
+                    intent=new Intent(LearningOrAssessment.this,ScoreBoard.class);
+                    startActivity(intent);
+                    finish();
+                    //Toast.makeText(this, "open firebase scoreCard", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
