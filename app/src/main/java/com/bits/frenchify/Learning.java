@@ -46,6 +46,7 @@ public class Learning extends AppCompatActivity {
         fireStore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         i=0;
+        //Toast.makeText(this, findSizeofCollection(path)+"", Toast.LENGTH_SHORT).show();
 
 
 

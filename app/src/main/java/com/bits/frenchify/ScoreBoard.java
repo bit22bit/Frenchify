@@ -3,9 +3,14 @@ package com.bits.frenchify;
 import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,10 +39,14 @@ public class ScoreBoard extends AppCompatActivity {
     private int documentLengthOkay;
     String path;
     static int documentLength=0;
-    static int s;
+
     String[] categories;
     String[] score;
     String[] date;
+    Button loadResult;
+    Toolbar toolbar;
+    boolean guestBro=false;
+    int c;
 
     ListView list;
     ArrayList<String> date1=new ArrayList<String>();
@@ -52,24 +61,73 @@ public class ScoreBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
 
+        loadResult=findViewById(R.id.resultLoader);
+        c=0;
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser=firebaseAuth.getCurrentUser();
         uid = firebaseAuth.getCurrentUser().getUid();
         firestore=FirebaseFirestore.getInstance();
+//        guestBro=getIntent().getExtras().getBoolean("guestBro");
+        toolbar = findViewById(R.id.toolbar);
+
+        toolbar.setTitle("Click on your result");
+
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ScoreBoard.this,LearningOrAssessment.class);
+                intent.putExtra("guestBro",guestBro);
+                //intent.putExtra("UserName",etFirstName.getText().toString());
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+        
         path="/userScore/Score/"+uid;
 
 
 
-        Toast.makeText(this, findSizeofCollection(path)+" Document", Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, +"", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, setLength(findSizeofCollection(path))+"", Toast.LENGTH_SHORT).show();
 
+        loadResult.setOnClickListener(view->{
+           c++;
+
+
+            Toast.makeText(this, findSizeofCollection(path)+"", Toast.LENGTH_SHORT).show();
+
+            for(int i=1;i<=findSizeofCollection(path);i++){
+
+
+                categories=new String[findSizeofCollection(path)+1];
+                score=new String[findSizeofCollection(path)+1];
+                date=new String[findSizeofCollection(path)+1];
+                readFireStore(path,i+"");
+                ListForScore adapter = new ListForScore(this, category1, score1, date1);
+                list = (ListView) findViewById(R.id.list_score);
+                list.setAdapter(adapter);
+
+               
+
+
+            }
+        });
 
 
 
 
 
     }
+
+
 
 
     public int findSizeofCollection(String path){
@@ -87,12 +145,15 @@ public class ScoreBoard extends AppCompatActivity {
 
                             }
                             documentLength =count;
+
+
+
                             //Toast.makeText(Learning.this, count+" Documents", Toast.LENGTH_SHORT).show();
 
                         } else {
                             Toast.makeText(ScoreBoard.this, "Error", Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(ScoreBoard.this, documentLength+"", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ScoreBoard.this, documentLength+"", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -113,8 +174,9 @@ public class ScoreBoard extends AppCompatActivity {
                 if (doc.exists())
                 {
 
-
-
+                        category1.add("Category :"+doc.get("Category")+"");
+                           score1.add("Score    :"+doc.get("Score")+"");
+                            date1.add("Date     :"+doc.get("Date")+"");
 
 
 
@@ -125,6 +187,18 @@ public class ScoreBoard extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+            super.onBackPressed();
+        Intent intent = new Intent(ScoreBoard.this,LearningOrAssessment.class);
+        intent.putExtra("guestBro",guestBro);
+        //intent.putExtra("UserName",etFirstName.getText().toString());
+        startActivity(intent);
+        finish();
+
+
     }
 
 

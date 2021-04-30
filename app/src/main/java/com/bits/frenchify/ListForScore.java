@@ -8,15 +8,17 @@ import android.widget.ArrayAdapter;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ListForScore extends ArrayAdapter<String> {
 
     private final Activity context;
-    private final String[] category;
-    private final String[] score;
-    private final String[] date;
+    private final ArrayList<String> category;
+    private final ArrayList<String> score;
+    private final ArrayList<String> date;
 
-    public ListForScore(Activity context, String[] category,String[] score, String[] date) {
-        super(context, R.layout.list_for_score);
+    public ListForScore(Activity context, ArrayList<String> category,ArrayList<String> score, ArrayList<String> date) {
+        super(context, R.layout.list_for_score,category);
         // TODO Auto-generated constructor stub
 
         this.context=context;
@@ -35,9 +37,9 @@ public class ListForScore extends ArrayAdapter<String> {
         //ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         TextView dateText = (TextView) rowView.findViewById(R.id.date_score);
 
-        categoryText.setText(category[position]);
-        scoreText.setText(score[position]);
-        dateText.setText(date[position]);
+        categoryText.setText(category.get(position));
+        scoreText.setText(score.get(position));
+        dateText.setText(date.get(position));
 
         return rowView;
 

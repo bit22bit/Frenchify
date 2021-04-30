@@ -13,8 +13,23 @@
         android:orientation="vertical"
         >
         <include layout="@layout/toolbar_layout"/>
-
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/resultLoader"
+            android:text="Click this button to see your score"
+            android:textColor="@color/white"
+            android:onClick="findLength"
+        />
+<!--        <Button-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/seeResult"-->
+<!--            android:text="See Result"-->
+<!--            android:textColor="@color/white"-->
+<!--            />-->
     </LinearLayout>
+
 
 
     <ListView
