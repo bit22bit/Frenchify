@@ -50,6 +50,17 @@ public class CategoriesOfAssessment extends AppCompatActivity {
             R.drawable.random_list
 
     };
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(CategoriesOfAssessment.this,LearningOrAssessment.class);
+        intent.putExtra("guestBro",guestBro);
+        //intent.putExtra("UserName",etFirstName.getText().toString());
+        startActivity(intent);
+        finish();
+
+
+    }
 
     public void sendCategories(String categories){
         intent= new Intent(getApplicationContext(),Quiz.class);
@@ -65,7 +76,7 @@ public class CategoriesOfAssessment extends AppCompatActivity {
         setContentView(R.layout.activity_catgories_of_assessment);
 
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Categories of Learning Modules");
+        toolbar.setTitle("Categories of Assessment");
         guestBro=getIntent().getExtras().getBoolean("guestBro");
 
         setSupportActionBar(toolbar);
@@ -93,7 +104,8 @@ public class CategoriesOfAssessment extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if(position == 0) {
-                    //sendCategories("WeekDay");
+
+                    sendCategories("WeekDay");
                     Toast.makeText(CategoriesOfAssessment.this, "WeekDay", Toast.LENGTH_SHORT).show();
 
                 }
@@ -109,13 +121,13 @@ public class CategoriesOfAssessment extends AppCompatActivity {
                 }
                 else if(position == 3) {
 
-                    //sendCategories("Words");
+                    sendCategories("Words");
                     Toast.makeText(CategoriesOfAssessment.this, "Words", Toast.LENGTH_SHORT).show();
 //
                 }
                 else if(position == 4) {
 
-                    // sendCategories("Numbers");
+                    sendCategories("Numbers");
                     Toast.makeText(CategoriesOfAssessment.this, "Numbers", Toast.LENGTH_SHORT).show();
                 }
                 else if(position == 5) {
@@ -124,10 +136,11 @@ public class CategoriesOfAssessment extends AppCompatActivity {
                 }
                 else if(position == 6) {
 
-                    //sendCategories("Sentences");
+                    sendCategories("Sentences");
                     Toast.makeText(CategoriesOfAssessment.this, "Sentence", Toast.LENGTH_SHORT).show();
                 }
                 else if(position == 7) {
+
 
                     Toast.makeText(CategoriesOfAssessment.this, "Not Ready Yet..", Toast.LENGTH_SHORT).show();
                 }

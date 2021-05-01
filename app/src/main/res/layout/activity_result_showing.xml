@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".ResultShowing">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <include layout="@layout/toolbar_layout"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mainll_result"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:paddingTop="50dp"
+        android:paddingHorizontal="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/trophy_img"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+
+            android:src="@drawable/trophy_list" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You have Scored 10/10"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:id="@+id/resultTv"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bad Score"
+            android:id="@+id/howsTheScore"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+
+            android:textSize="35sp"
+            />
+        <Button
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="back to Assessment"
+            android:textColor="@color/white"
+            android:onClick="backToAssessment"
+            android:id="@+id/backToAssessment"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

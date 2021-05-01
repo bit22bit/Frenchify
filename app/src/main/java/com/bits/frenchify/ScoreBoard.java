@@ -115,7 +115,7 @@ public class ScoreBoard extends AppCompatActivity {
                 list = (ListView) findViewById(R.id.list_score);
                 list.setAdapter(adapter);
 
-               
+
 
 
             }

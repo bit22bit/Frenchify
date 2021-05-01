@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -122,14 +123,14 @@ public class Quiz extends AppCompatActivity {
         toolbar.setTitle("Quiz has been started");
 
         questionTv = findViewById(R.id.question_ass);
-        timerTv=findViewById(R.id.timeTv);
+
         scoreTv= findViewById(R.id.scoreTv);
 
         optionA= findViewById(R.id.option1);
         optionB=findViewById(R.id.option2);
         optionC=findViewById(R.id.option3);
         optionD=findViewById(R.id.option4);
-        next=findViewById(R.id.nextButton_ass);
+        ///next=findViewById(R.id.nextButton_ass);
 
 
         categories = getIntent().getStringExtra("category");
@@ -244,7 +245,7 @@ public class Quiz extends AppCompatActivity {
 
             scoreTv.setText("kdjn");
             ll.setVisibility(View.INVISIBLE);
-            timerTv.setText(correctAns + " ");
+            //timerTv.setText(correctAns + " ");
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
             currentTime = sdf.format(new Date());
@@ -286,6 +287,11 @@ public class Quiz extends AppCompatActivity {
 
 
                     }
+
+                    Intent intent=new Intent(Quiz.this,ResultShowing.class);
+                    intent.putExtra("score",correctAns);
+                    startActivity(intent);
+                    finish();
                 }
             });
 
